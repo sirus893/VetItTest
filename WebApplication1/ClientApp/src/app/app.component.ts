@@ -14,6 +14,9 @@ export class AppComponent {
   public productList: ProductModel;
 
 
+  // call api for active products
+  // If no products return, inform the user and make sure the data is reverted to all products.
+  // TODO: Need a better way of doing this.
   activeProducts() {
     this.service.getActiveProducts().subscribe(data => {
       if (data === undefined || data === null) {
@@ -27,6 +30,7 @@ export class AppComponent {
     });
   }
 
+  // Same as above only for drugs.
   dangerousDrugs() {
     this.service.getDangerousDrugs().subscribe(data => {
       if (data === undefined || data === null) {
@@ -39,6 +43,8 @@ export class AppComponent {
     })
   }
 
+  // duplicated code
+  // TODO can I move this to services?
   getAllProducts() {
     this.service.getAllProducts().subscribe(data => {
       this.service.changeProductList(data);

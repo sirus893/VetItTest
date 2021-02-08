@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ProductComponent } from '../app/product/product.component';
 import { ProductModel } from '../models/product.model';
 
 
@@ -37,8 +36,4 @@ export class ProductService {
   changeProductList(productList: ProductModel) {
     this.productList.next(productList);
   }
-
-
-
-  //formData: Product = new Product()
 }

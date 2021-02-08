@@ -21,15 +21,22 @@ namespace VetIt.Controllers
         }
 
         // GET: api/Products
+        /// <summary>
+        /// Gets all products, but is also used to refresh the dbcontext
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<List<Product>> GetProductsAsync()
         {
-            var result =  await _context.Products.ToListAsync();
-
-            return result;
+            return await _context.Products.ToListAsync();
         }
 
         // GET: api/Products/5
+        /// <summary>
+        /// Get specific product. Just here to test swagger.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
@@ -41,11 +48,14 @@ namespace VetIt.Controllers
             }
 
             return new OkObjectResult(product);
-            //return product;
         }
 
 
         // GET: api/Products/ActiveProducts
+        /// <summary>
+        /// Returns all active and non deleted products in order of the newest created first.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("ActiveProducts")]
         public async Task<ActionResult<List<Product>>> GetActiveAndNonDeletedProducts()
         {
@@ -61,6 +71,11 @@ namespace VetIt.Controllers
             return product;
         }
 
+        // GET: api/Products/ActiveDangerousDrugs
+        /// <summary>
+        /// Returns dangerous drugs that are still active and haven't been deleted.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("ActiveDangerousDrugs")]
         public async Task<ActionResult<List<Product>>> GetActiveDangerousDrugs()
         {
@@ -77,7 +92,13 @@ namespace VetIt.Controllers
         }
 
 
-        // PUT: api/Products/5
+        // PUT: api/Products/5/blahblahblah
+        /// <summary>
+        /// Updated product description.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="description"></param>
+        /// <returns></returns>
         [HttpPut("{id}/{description}")]
         public async Task<ActionResult<Product>> PutProduct(int id, string description)
         {
