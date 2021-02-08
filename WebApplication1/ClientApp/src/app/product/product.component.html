@@ -1,0 +1,85 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-edit [prod]="prod" *ngIf="ActivateEditDescription"></app-edit>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!productList">
+  Loading....
+</div>
+<table *ngIf="productList" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Options</th>
+      <th>Product Id</th>
+      <th>Create Date</th>
+      <th>Update Date</th>
+      <th>Delete Date</th>
+      <th>Created By</th>
+      <th>Updated By</th>
+      <th>Inactive Date</th>
+      <th>Organisation Id</th>
+      <th>Product Code</th>
+      <th>Product Description</th>
+      <th>Supplier Product Code</th>
+      <th>Supplier Price</th>
+      <th>Manufacturer Code</th>
+      <th>Bought In Quantity</th>
+      <th>Sold In Quantity</th>
+      <th>Sold In Markup</th>
+      <th>Wholesale Discount</th>
+      <th>Manufacturer Discount</th>
+      <th>Use Wholesale Discount</th>
+      <th>Use Manufacturer Discount</th>
+      <th>Dangerous</th>
+      <th>Neutering</th>
+      <th>Euthanasia</th>
+      <th>Book Without Service Fee</th>
+      <th>Prescription Only</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of productList">
+      <td>
+        <button type="button" class="btn btn-light mr-1" data-toggle="modal" data-target="#exampleModal" (click)="editClick(product)" data-backdrop="static" data-keyboard="false">
+          Edit
+        </button>
+      </td>
+      <td>{{product.productId}}</td>
+      <td>{{product.createDate | date:'MM/dd/yyyy'}}</td>
+      <td>{{product.updateDate | date:'MM/dd/yyyy'}}</td>
+      <td>{{product.deleteDate | date:'MM/dd/yyyy'}}</td>
+      <td>{{product.createdBy}}</td>
+      <td>{{product.updatedBy}}</td>
+      <td>{{product.inactiveDate | date:'MM/dd/yyyy'}}</td>
+      <td>{{product.organisationId}}</td>
+      <td>{{product.productCode}}</td>
+      <td>{{product.productDescription}}</td>
+      <td>{{product.supplierProductCode}}</td>
+      <td>{{product.supplierPrice}}</td>
+      <td>{{product.manufacturerCode}}</td>
+      <td>{{product.boughtInQuantity}}</td>
+      <td>{{product.soldInQuantity}}</td>
+      <td>{{product.soldInMarkup}}</td>
+      <td>{{product.wholesaleDiscount}}</td>
+      <td>{{product.manufacturerDiscount}}</td>
+      <td>{{product.useWholesaleDiscount}}</td>
+      <td>{{product.useManufacturerDiscount}}</td>
+      <td>{{product.dangerous}}</td>
+      <td>{{product.neutering}}</td>
+      <td>{{product.euthanasia}}</td>
+      <td>{{product.bookWithoutServiceFee}}</td>
+      <td>{{product.prescriptionOnly}}</td>
+    </tr>
+  </tbody>
+</table>
